@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: pharma-mis
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn pharma_backend.wsgi:application --config gunicorn_config.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.16
+      - key: ENVIRONMENT
+        value: production
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: 1
+      - key: PYTHONDONTWRITEBYTECODE
+        value: 1
+    plan: free
